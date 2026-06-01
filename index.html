@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YardExx — De Airbnb voor Terminalcapaciteit</title>
+  <meta name="description" content="Terminals verhuren overschotcapaciteit. Anoniem. Direct. Digitaal. De eerste Europese marketplace voor container-, RoRo-, bulk- en tankterminals." />
+  <meta property="og:title" content="YardExx — De Airbnb voor Terminalcapaciteit" />
+  <meta property="og:description" content="Koop en verkoop surplus terminalcapaciteit anoniem. België-first. Uitbreiding Europa." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-light: #132040;
+      --teal: #00c9a7;
+      --teal-dark: #009e84;
+      --teal-glow: rgba(0, 201, 167, 0.15);
+      --white: #ffffff;
+      --gray-100: #f4f6f9;
+      --gray-200: #e8edf4;
+      --gray-400: #8a96a8;
+      --gray-600: #4a5568;
+      --text: #1a2535;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--teal); }
+
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--white); }
+
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+    .btn-nav {
+      background: var(--teal);
+      color: var(--navy) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .btn-nav:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(0,201,167,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,201,167,0.1);
+      border: 1px solid rgba(0,201,167,0.3);
+      border-radius: 999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      max-width: 900px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 580px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(0,201,167,0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(0,201,167,0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: var(--white);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat { text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: 800; color: var(--teal); display: block; }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.25rem; }
+
+    /* SECTION BASE */
+    section { padding: 100px 5%; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1px;
+      line-height: 1.2;
+      max-width: 600px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray-600);
+      max-width: 560px;
+      margin-top: 1rem;
+    }
+
+    /* PROBLEM */
+    .problem {
+      background: var(--gray-100);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .problem-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid var(--gray-200);
+    }
+
+    .problem-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(239,68,68,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .problem-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .problem-card p { font-size: 0.9rem; color: var(--gray-600); }
+
+    /* HOW */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 56px; height: 56px;
+      background: var(--teal);
+      color: var(--navy);
+      border-radius: 50%;
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.9rem; color: var(--gray-600); }
+
+    /* CAPACITY TYPES */
+    .types { background: var(--navy); }
+    .types .section-title { color: var(--white); }
+    .types .section-subtitle { color: rgba(255,255,255,0.5); }
+
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .type-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .type-card:hover {
+      border-color: rgba(0,201,167,0.4);
+      transform: translateY(-3px);
+    }
+
+    .type-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .type-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+    .type-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+    .type-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(0,201,167,0.12);
+      color: var(--teal);
+    }
+
+    /* REGIONS */
+    .regions { background: var(--gray-100); }
+
+    .regions-intro {
+      display: flex;
+      gap: 4rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .region-list { flex: 1; min-width: 280px; }
+
+    .region-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--gray-200);
+    }
+
+    .region-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .region-dot.soon { background: rgba(0,201,167,0.3); }
+
+    .region-item strong { font-size: 0.95rem; font-weight: 700; }
+    .region-item span { font-size: 0.8rem; color: var(--gray-400); margin-left: auto; }
+
+    .roadmap-box {
+      flex: 1;
+      min-width: 280px;
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 2.5rem;
+      color: var(--white);
+    }
+
+    .roadmap-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+    .roadmap-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .roadmap-phase {
+      background: rgba(0,201,167,0.12);
+      color: var(--teal);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .roadmap-text strong { font-size: 0.9rem; display: block; }
+    .roadmap-text span { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+
+    /* ANON */
+    .anon {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .anon-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .anon-card {
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .anon-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .anon-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .anon-card p { font-size: 0.85rem; color: var(--gray-600); }
+
+    /* CTA / WAITLIST */
+    .waitlist {
+      background: var(--navy);
+      text-align: center;
+    }
+
+    .waitlist h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .waitlist p {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .waitlist-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .waitlist-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.9rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .waitlist-form input::placeholder { color: rgba(255,255,255,0.35); }
+    .waitlist-form input:focus { border-color: var(--teal); }
+
+    .waitlist-form button {
+      padding: 0.9rem 1.75rem;
+      background: var(--teal);
+      color: var(--navy);
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .waitlist-form button:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    .waitlist-note {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap 1rem;
+      gap: 1rem;
+    }
+
+    .footer-logo { font-size: 1.1rem; font-weight: 800; color: var(--white); }
+    .footer-logo span { color: var(--teal); }
+    footer small { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .stat-number { font-size: 1.5rem; }
+    }
+
+    /* SUCCESS MESSAGE */
+    .success-msg {
+      display: none;
+      margin-top: 1rem;
+      color: var(--teal);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Yard<span>Exx</span></div>
+  <div class="nav-links">
+    <a href="#hoe-werkt-het">Hoe het werkt</a>
+    <a href="#types">Capaciteitstypes</a>
+    <a href="#regio">Regio's</a>
+    <a href="#waitlist" class="btn-nav">Vroeg instappen</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span>🚢</span> De Airbnb voor Terminalcapaciteit
+  </div>
+  <h1>Overschot wordt <em>omzet.</em><br/>Anoniem. Digitaal. Direct.</h1>
+  <p>Terminals kopen en verkopen surplus yard-ruimte, truck slots en ligplaatsen — zonder dat concurrenten weten wie jij bent.</p>
+  <div class="hero-cta">
+    <a href="#waitlist" class="btn-primary">Sluit je aan als partner</a>
+    <a href="#hoe-werkt-het" class="btn-secondary">Hoe werkt het?</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-number">€2B+</span>
+      <span class="stat-label">onbenutte capaciteitswaarde/jaar in de Benelux</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">0%</span>
+      <span class="stat-label">digitale oplossingen voor container/RoRo</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">5+</span>
+      <span class="stat-label">capaciteitstypes op 1 platform</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="probleem">
+  <div class="section-label">Het probleem</div>
+  <h2 class="section-title">Capaciteitsproblemen worden vandaag opgelost via… de telefoon.</h2>
+  <p class="section-subtitle">Ad-hoc deals via persoonlijk netwerk, geen transparantie, geen eerlijke marktprijs — en altijd bang dat de concurrent weet dat je krap zit.</p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-icon">📉</div>
+      <h3>Verspilde capaciteit</h3>
+      <p>Terminals laten yard-ruimte leegstaan terwijl buren overbelast zijn. Geen matchingmechanisme = geen deal.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📞</div>
+      <h3>Deals via telefoon</h3>
+      <p>Capaciteitshandel verloopt nog via persoonlijk netwerk en telefoongesprekken. Traag, duur, en afhankelijk van wie je kent.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">👁️</div>
+      <h3>Geen anonimiteit</h3>
+      <p>Terminals willen niet dat concurrenten zien dat ze krap zitten. Dus blijven deals ongedaan die wel zinvol waren.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💸</div>
+      <h3>Dure brokers</h3>
+      <p>Wie toch een externe partij inschakelt, betaalt hoge marges voor iets dat technologie in seconden kan doen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="hoe-werkt-het">
+  <div class="section-label">Oplossing</div>
+  <h2 class="section-title">Zo simpel als een Airbnb boeking — maar voor terminals.</h2>
+  <p class="section-subtitle">Drie stappen. Volledig anoniem tot de deal gesloten is.</p>
+  <div class="how-steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Publiceer beschikbare capaciteit</h3>
+      <p>Geef aan hoeveel yard-ruimte, truck slots of ligplaatsen je beschikbaar hebt — met type, volume, periode en prijs.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Anonieme matching</h3>
+      <p>YardExx matcht vraag en aanbod. Beide partijen blijven anoniem totdat een deal bevestigd is — concurrenten zien nooit wie jij bent.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Deal gedaan</h3>
+      <p>Accepteer, onderhandel of weiger. Zodra beide partijen akkoord gaan, worden identiteiten gedeeld voor logistieke opvolging.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TYPES -->
+<section class="types" id="types">
+  <div class="section-label" style="color: rgba(0,201,167,0.7)">Wat je kan verhandelen</div>
+  <h2 class="section-title">Alle terminalcapaciteit op één platform</h2>
+  <p class="section-subtitle">Van containers tot koelruimte — YardExx is het eerste Europese platform dat alle terminaltypen op één plek samenbrengt.</p>
+  <div class="types-grid">
+    <div class="type-card">
+      <div class="type-icon">📦</div>
+      <h3>Containerterminals</h3>
+      <p>Yard-ruimte, stacking capacity en gate slots voor container afhandeling.</p>
+      <span class="type-tag">Actief — België</span>
+    </div>
+    <div class="type-card">
+      <div class="type-icon">🚗</div>
+      <h3>RoRo Terminals</h3>
+      <p>Voertuig- en roll-on/roll-off opslagplaatsen voor automotive en machine-lading.</p>
+      <span class="type-tag">Actief — België</span>
+    </div>
+    <div class="type-card">
+      <div class="type-icon">⛵</div>
+      <h3>Droge Bulk</h3>
+      <p>Opslagcapaciteit voor graan, mineralen, kolen en andere droge bulkgoederen.</p>
+      <span class="type-tag">Actief — België</span>
+    </div>
+    <div class="type-card">
+      <div class="type-icon">🛢️</div>
+      <h3>Tank Terminals</h3>
+      <p>Vloeibare bulk, chemicaliën, olie en andere vloeistofopslag (alternatief voor Matrix — maar Europees).</p>
+      <span class="type-tag">Q3 2026</span>
+    </div>
+    <div class="type-card">
+      <div class="type-icon">❄️</div>
+      <h3>Koelopslagterminals</h3>
+      <p>Getempereerde opslagruimte voor voeding, farmaceutica en gekoelde lading.</p>
+      <span class="type-tag">Q4 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- REGIONS -->
+<section class="regions" id="regio">
+  <div class="section-label">Geografische rollout</div>
+  <h2 class="section-title">België eerst. Dan Europa.</h2>
+  <p class="section-subtitle">We starten gefocust in de Belgische havens en breiden systematisch uit naar de grootste Europese havenregio's.</p>
+  <div class="regions-intro">
+    <div class="region-list">
+      <div class="region-item">
+        <div class="region-dot"></div>
+        <strong>Antwerpen-Brugge</strong>
+        <span>Live — Fase 1</span>
+      </div>
+      <div class="region-item">
+        <div class="region-dot"></div>
+        <strong>Zeebrugge</strong>
+        <span>Live — Fase 1</span>
+      </div>
+      <div class="region-item">
+        <div class="region-dot"></div>
+        <strong>Gent / North Sea Port</strong>
+        <span>Live — Fase 1</span>
+      </div>
+      <div class="region-item">
+        <div class="region-dot soon"></div>
+        <strong>Rotterdam</strong>
+        <span>2026 Q3</span>
+      </div>
+      <div class="region-item">
+        <div class="region-dot soon"></div>
+        <strong>Hamburg / Bremen</strong>
+        <span>2026 Q4</span>
+      </div>
+      <div class="region-item">
+        <div class="region-dot soon"></div>
+        <strong>Le Havre / Duinkerke</strong>
+        <span>2027</span>
+      </div>
+    </div>
+    <div class="roadmap-box">
+      <h3>Roadmap</h3>
+      <div class="roadmap-item">
+        <span class="roadmap-phase">Nu</span>
+        <div class="roadmap-text">
+          <strong>Vroege partners zoeken</strong>
+          <span>Belgische terminals die willen mee bouwen en testen</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-phase">Q3 2026</span>
+        <div class="roadmap-text">
+          <strong>Beta — Container & RoRo</strong>
+          <span>Eerste live transacties in Antwerpen &amp; Zeebrugge</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-phase">Q4 2026</span>
+        <div class="roadmap-text">
+          <strong>Volledige België + Rotterdam</strong>
+          <span>Alle capaciteitstypes, uitbreiding Nederland</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-phase">2027</span>
+        <div class="roadmap-text">
+          <strong>Europees platform</strong>
+          <span>Top-10 Europese havens actief op YardExx</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANONYMITY -->
+<section class="anon" id="anonimiteit">
+  <div class="section-label">Differentiator</div>
+  <h2 class="section-title" style="margin: 0 auto 1rem;">Anonimiteit is geen feature — het is de basis.</h2>
+  <p class="section-subtitle" style="margin: 0 auto;">Terminals werken samen met concurrenten. Dat werkt alleen als niemand blootgesteld wordt.</p>
+  <div class="anon-cards">
+    <div class="anon-card">
+      <div class="anon-icon">🔒</div>
+      <h3>Identiteit verborgen</h3>
+      <p>Je bedrijfsnaam is nooit zichtbaar totdat beide partijen een deal bevestigen.</p>
+    </div>
+    <div class="anon-card">
+      <div class="anon-icon">⚖️</div>
+      <h3>Eerlijke marktprijs</h3>
+      <p>Prijs wordt bepaald door vraag en aanbod, niet door wie je kent of wie meer druk voelt.</p>
+    </div>
+    <div class="anon-card">
+      <div class="anon-icon">🤝</div>
+      <h3>Geen broker nodig</h3>
+      <p>Directe deals via het platform. Geen derde partij, geen marge, geen vertraging.</p>
+    </div>
+    <div class="anon-card">
+      <div class="anon-icon">🛡️</div>
+      <h3>GDPR-conform</h3>
+      <p>Alle data verwerkt en opgeslagen in de EU. Volledig compliant met Europese privacy-wetgeving.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="waitlist">
+  <div class="section-label" style="color: rgba(0,201,167,0.7)">Vroeg instappen</div>
+  <h2>Bouw mee aan de toekomst<br/>van terminalcapaciteit.</h2>
+  <p>We zoeken 5–10 Belgische terminals die als vroege partner willen meedoen. Geen verplichtingen — wel directe invloed op het product.</p>
+
+  <form class="waitlist-form" id="waitlistForm">
+    <input type="email" placeholder="jouw@terminal.be" required id="emailInput" />
+    <button type="submit">Aanmelden</button>
+  </form>
+  <div class="success-msg" id="successMsg">Bedankt! We nemen binnenkort contact op.</div>
+  <p class="waitlist-note">Of stuur een e-mail naar <strong style="color:rgba(255,255,255,0.5)">hello@yardexx.com</strong></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Yard<span>Exx</span></div>
+  <small>© 2026 YardExx. Alle rechten voorbehouden. België 🇧🇪</small>
+  <small>Gebouwd in Antwerpen.</small>
+</footer>
+
+<script>
+  document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('emailInput').value;
+    // In productie: stuur naar je backend of Formspree/Mailchimp
+    console.log('Waitlist signup:', email);
+    document.getElementById('waitlistForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
