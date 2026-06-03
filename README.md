@@ -1,5 +1,7 @@
 # YardExx
 
+[![Deployed on Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=yardexx-platform&style=flat-square)](https://yardexx-platform.vercel.app)
+
 **De Airbnb voor Terminalcapaciteit.**
 
 YardExx is het eerste Europese platform waar terminals anoniem surplus yard-ruimte, truck slots en ligplaatsen kunnen kopen en verkopen — zonder dat concurrenten weten wie je bent.
